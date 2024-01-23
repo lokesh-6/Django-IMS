@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %} Products Page {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Edit Item
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" class="edit-form">
+                        {% csrf_token %}
+                        {{ form}}
+                        <button type="submit" class="btn btn-info">Update</button>
+                        <a href="{% url 'product' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .edit-form {
+        display: grid;
+        grid-gap: 15px;
+    }
+
+    .card {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .card-header {
+        background-color: #29a3ef; /* Custom info color */
+        color: white;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .btn-info {
+        background-color: #17a2b8; /* Bootstrap info color */
+        border-color: #17a2b8;
+        margin-right: 10px;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Bootstrap secondary color */
+        border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .edit-form input[type="text"],
+    .edit-form input[type="email"],
+    .edit-form input[type="number"],
+    .edit-form select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+</style>
+{% endblock %}

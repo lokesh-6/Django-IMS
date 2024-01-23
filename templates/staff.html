@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %} Staff Page {% endblock %}
+
+{% block content %}
+{% include 'topnav.html' %}
+
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    .table {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .table th, .table td {
+      padding: 15px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .table th {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .table td {
+      
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .btn-info {
+      color: #fff;
+      background-color: #17a2b8;
+      border-color: #17a2b8;
+    }
+
+    .btn-info:hover {
+      background-color: #138496;
+      border-color: #117a8b;
+    }
+</style>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for worker in workers %}
+      <tr>
+        <td>{{ worker.username }}</td>
+        <td>{{ worker.email }}</td>
+        <td>{{ worker.profile.phone }}</td>
+        <td>
+          <a href="{% url 'staff_detail' worker.id %}" class="btn btn-info btn-sm">View Profile</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody> 
+  </table>
+</div>
+
+{% endblock %}

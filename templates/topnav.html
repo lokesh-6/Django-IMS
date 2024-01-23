@@ -1,0 +1,135 @@
+ <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #343a40;
+    }
+
+    .updates-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .updates-list li {
+      display: none;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #1f80ff;
+    }
+
+    .statistic-box {
+      background-color: #f1f1f1;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .statistic-box h6 {
+      color: #6c757d;
+    }
+
+    .statistic-box p {
+      font-size: 2rem;
+      color: #28a745;
+      margin-top: 10px;
+    }
+
+    /* Add hover effect */
+    .statistic-box:hover {
+      background-color: #e0e0e0;
+      cursor: pointer;
+    }
+  </style>
+
+<body>
+
+<div class="container">
+  <div class="row">
+    <!-- Left Column for Recent Updates -->
+    <div class="col-md-6 d-flex">
+      <div class="card w-100 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Recent Updates</h5>
+          <!-- Place your recent updates content here -->
+          <ul class="updates-list" id="updates-list">
+            <li>Update 1 - New Product Added</li>
+            <li>Update 2 - Inventory Restocked</li>
+            <li>Update 3 - Sales Report Generated</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column for Statistics -->
+    <div class="col-md-6 d-flex">
+      <div class="card w-100 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Statistics</h5>
+          <!-- Place your statistics content here -->
+          <div class="row">
+            <div class="col-md-4">
+              <a href="/product" style="text-decoration: none;">
+                <div class="statistic-box">
+                  <h6>Products</h6>
+                  <p class="display-4">{{product_count}}</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="/staff" style="text-decoration: none;">
+                <div class="statistic-box">
+                  <h6>Staff Count</h6>
+                  <p class="display-4">{{worker_count}}</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="/order" style="text-decoration: none;">
+                <div class="statistic-box">
+                  <h6>Orders</h6>
+                  <p class="display-4">{{order_count}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js (if needed) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Function to show updates with animation
+    function showUpdates() {
+      $("#updates-list li:hidden:first").fadeIn(1000, function() {
+        $(this).next("li:hidden").length && showUpdates();
+      });
+    }
+
+    // Initial call to start the animation
+    showUpdates();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block title %} Products Page {% endblock %}
+
+{% block content %}
+{% include 'topnav.html' %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- IMS Form on the left -->
+        <div class="col-md-6">
+            {%for message in messages%}
+            {%if message%}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {%endif%}
+            {%endfor%}
+            <form id="imsForm" method="POST" class="form-container">
+                <h4>Add Products</h4>
+                <hr>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+
+        <!-- Products table on the right -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Product List
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.category }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>
+                                    <a href="{% url 'product_update' item.id%}" class="btn btn-warning">Edit</a>
+                                    <a href="{% url 'product_del' item.id%}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function placeOrder() {
+        console.log('Order placed!');
+    }
+</script>
+
+<style>
+    .form-container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container label {
+        font-weight: bold;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="number"],
+    .form-container select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .form-container input[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .form-container input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    .card {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .btn-warning, .btn-danger {
+        margin-right: 5px;
+    }
+</style>
+{% endblock %}

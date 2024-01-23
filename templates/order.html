@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+{%block title%}Order Page{%endblock%}
+
+{%block content%}
+{%include 'topnav.html'%}
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #000;
+      color: #fff;
+    }
+
+    tr:first-child {
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
+<body>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Order By</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for order in orders%}
+      <tr>
+        <td>{{order.product}}</td>
+        <td>{{order.product.category}}</td>
+        <td>{{order.order_quantity}}</td>
+        <td>{{order.staff.username}}</td>
+        <td>{{order.date}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+</body>
+
+{%endblock%}

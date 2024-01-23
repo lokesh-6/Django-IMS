@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Logout Page {% endblock %}
+
+{% block content %}
+<div class="logout-container">
+    <div class="logout-message">
+        <h2>You have successfully logged out.</h2>
+        <p>Thank you for using our system.</p>
+        <a href="{% url 'user-login' %}" class="btn btn-primary btn-lg">Login Again</a>
+    </div>
+</div>
+
+<style>
+    .logout-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-color: #f8f9fa;
+    }
+
+    .logout-message {
+        text-align: center;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .logout-message h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 20px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+{%if user.is_authenticated and user.is_staff and user.is_superuser%}
+{%include 'topnav.html'%}
+<div class="container">
+  <div class="row">
+    <!-- Left Column for Pie Chart -->
+    <div class="col-md-6 d-flex flex-column">
+      <div class="card flex-grow-1">
+        <div class="card-body">
+          <h5 class="card-title">Product Distribution</h5>
+          <div class="chart-container" style="height: 100%;">
+            <canvas id="pieChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column for Bar Graph -->
+    <div class="col-md-6 d-flex flex-column">
+      <div class="card flex-grow-1">
+        <div class="card-body">
+          <h5 class="card-title">Product Sales</h5>
+          <div class="chart-container" style="height: 100%;">
+            <canvas id="barGraph"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Sample data for Pie Chart
+    var pieData = {
+      labels: [{%for order in orders%}'{{order.product.name}}',{%endfor%}],
+      datasets: [{
+        data: [{%for order in orders%}'{{order.order_quantity}}',{%endfor%}],
+        backgroundColor: ['#007bff', '#28a745', '#dc3545','#28a745']
+      }]
+    };
+
+    // Sample data for Bar Graph
+    var barData = {
+      labels: [{%for product in products%}'{{product.name}}',{%endfor%}],
+      datasets: [{
+        data: [{%for product in products%} {{product.quantity}},{%endfor%}],
+        backgroundColor: ['#007bff', '#28a745', '#dc3545','#28a745']
+      }]
+    };
+
+    // Create Pie Chart
+    var pieChart = new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: pieData,
+      options: {
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        }
+      }
+    });
+
+    // Create Bar Graph
+    var barGraph = new Chart(document.getElementById('barGraph'), {
+      type: 'bar',
+      data: barData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  });
+</script>
+{%else%}
+{%include 'staff_index.html'%}
+{%endif%}
+{% endblock %}
