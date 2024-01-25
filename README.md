@@ -28,7 +28,7 @@ A step-by-step series of examples that tell you how to get a development environ
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/django-ims.git
+git clone https://github.com/lokesh-6/Django-IMS.git
 
 
 2. Navigate to the project directory:
