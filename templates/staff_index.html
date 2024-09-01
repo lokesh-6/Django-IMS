@@ -156,14 +156,7 @@
                                 <td>{{order.order_quantity}}</td>
                                 <td>{{order.date}}</td>
                             </tr>
-                            {%if order.staff.is_superuser%}
-                            <tr>
-                                <td>{{order.product.name}}</td>
-                                <td>{{order.product.category}}</td>
-                                <td>{{order.order_quantity}}</td>
-                                <td>{{order.date}}</td>
-                            </tr>
-                            {%endif%}
+                            
                             {%endif%}
                             {%endfor%}
                         </tbody>
