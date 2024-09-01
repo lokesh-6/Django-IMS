@@ -86,7 +86,6 @@ jupyterlab-pygments==0.2.2
 jupyterthemes==0.20.0
 kiwisolver==1.4.4
 lesscpy==0.15.1
-lief==0.13.2
 mangum==0.17.0
 markdown-it-py==3.0.0
 MarkupSafe==2.1.1
